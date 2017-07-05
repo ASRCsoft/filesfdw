@@ -4,6 +4,5 @@ setup(
     name='filesfdw',
     version='0.0.1',
     author='William May',
-    license='Postgresql',
     packages=['filesfdw']
 )
