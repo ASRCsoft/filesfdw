@@ -87,6 +87,6 @@ class LidarNetcdf(ForeignDataWrapper):
         # get scans here?
         # ---
         
-        df = pd.DataFrame({'site': sites, 'date': dates, 'path': files})
+        df = pd.DataFrame({'site': sites, 'date': dates, 'netcdf': files})
         for i, row in df.iterrows():
             yield row.to_dict()
