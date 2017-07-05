@@ -1,5 +1,4 @@
-import subprocess
-from setuptools import setup, find_packages, Extension
+from setuptools import setup
 setup(
     name='filesfdw',
     version='0.0.1',
