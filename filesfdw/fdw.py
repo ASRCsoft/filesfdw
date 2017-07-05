@@ -8,7 +8,7 @@ class LidarCsv(ForeignDataWrapper):
     """Get lidar csv/xml files"""
 
     def __init__(self, options, columns):
-        super(Lidar, self).__init__(options, columns)
+        super(LidarCsv, self).__init__(options, columns)
         self.base = options['base']
 
     def execute(self, quals, columns):
@@ -44,7 +44,7 @@ class MwrCsv(ForeignDataWrapper):
     """Get microwave radiometer csv files"""
 
     def __init__(self, options, columns):
-        super(Mwr, self).__init__(options, columns)
+        super(MwrCsv, self).__init__(options, columns)
         self.base = options['base']
 
     def execute(self, quals, columns):
@@ -75,7 +75,7 @@ class LidarNetcdf(ForeignDataWrapper):
     """Get lidar netcdf files"""
 
     def __init__(self, options, columns):
-        super(Lidar, self).__init__(options, columns)
+        super(LidarNetcdf, self).__init__(options, columns)
         self.base = options['base']
 
     def execute(self, quals, columns):
