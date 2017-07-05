@@ -88,5 +88,5 @@ class LidarNetcdf(ForeignDataWrapper):
         # ---
         
         df = pd.DataFrame({'site': sites, 'date': dates, 'path': files})
-        for i, row in df2.iterrows():
+        for i, row in df.iterrows():
             yield row.to_dict()
