@@ -28,11 +28,13 @@ class LidarCsv(ForeignDataWrapper):
         df2.rename(columns={'radial_wind_data': 'radial',
                             'reconstruction_wind_data': 'wind',
                             'environmental_data': 'environment',
-                            'whole_radial_wind_data': 'whole'}, inplace=True)
+                            'whole_radial_wind_data': 'whole',
+                            'sequences': 'sequences'}, inplace=True)
         df2.where((pd.notnull(df2)), None, inplace=True)
         df2.reset_index(inplace=True)
         # add missing columns if needed
-        columns = ['date', 'site', 'radial', 'wind', 'whole', 'scan', 'environment', 'config']
+        columns = ['date', 'site', 'radial', 'wind', 'whole',
+                   'scan', 'environment', 'config', 'sequences']
         for column in columns:
             if not column in df2.columns:
                 df2[column] = None
