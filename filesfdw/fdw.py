@@ -25,20 +25,24 @@ class LidarCsv(ForeignDataWrapper):
         # get rid of silly multiindex junk
         df2.columns = df2.columns.levels[1]
         # make nicer names
-        df2.rename(columns={'radial_wind_data': 'radial',
-                            'reconstruction_wind_data': 'wind',
-                            'environmental_data': 'environment',
-                            'whole_radial_wind_data': 'whole',
-                            'sequences': 'sequences'}, inplace=True)
+        name_dict = {'radial_wind_data': 'radial',
+                     'reconstruction_wind_data': 'wind',
+                     'environmental_data': 'environment',
+                     'whole_radial_wind_data': 'whole',
+                     'sequences': 'sequences',
+                     'wsc_get_radial_wind_data_cli': 'new_rws',
+                     'wsc_get_reconstruction_wind_data_cli': 'new_wind',
+                     'wsc_get_environmental_data_cli': 'new_env'}
+        df2.rename(columns=name_dict, inplace=True)
         df2.where((pd.notnull(df2)), None, inplace=True)
         df2.reset_index(inplace=True)
         # add missing columns if needed
         columns = ['date', 'site', 'radial', 'wind', 'whole',
-                   'scan', 'environment', 'config', 'sequences']
-        for column in columns:
-            if not column in df2.columns:
-                df2[column] = None
-        for i, row in df2.iterrows():
+                   'scan', 'environment', 'config', 'sequences',
+                   'new_rws', 'new_wind', 'new_env']
+        # actually only get the ones that exist in the dataframe
+        columns = list(set(columns) & set(df2.columns))
+        for i, row in df2[columns].iterrows():
             yield row.to_dict()
 
             
